@@ -1,6 +1,7 @@
 # Ignore volatile UI-related state
 docs/.obsidian/workspace.json
 docs/.obsidian/app.json
+docs\03_Secrets\*
 
 # Ignore system and editor files
 .vscode/
