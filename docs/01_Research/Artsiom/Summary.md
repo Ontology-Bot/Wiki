@@ -29,7 +29,7 @@ Official tutorial from neo4j RAG
 
 - architecture:
 ![[Pasted image 20260129131149.png|400]]
-![[Pasted image 20260129131211.png|400]]
+![[Pasted image 20260129131211.png|800]]
 - 932 chatbot questions dataset! - split on train & test
 - The **Subword Semantic Hashing** method is used to provide the features input to classify an intent and get keywords (claims its the best)
 - did train the intent classifier - used a bunch of them and selected the best by tests
@@ -53,7 +53,7 @@ Official tutorial from neo4j RAG
 - assessment
 ![[Pasted image 20260129150134.png|300]]
 
-![[Pasted image 20260129150617.png|250]]
+![[Pasted image 20260129150617.png|750]]
 ### Generative approach for SPARQL queries
 [[ieee_access_sgpt.pdf]]
 

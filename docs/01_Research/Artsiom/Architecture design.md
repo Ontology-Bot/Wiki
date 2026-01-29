@@ -55,6 +55,6 @@ Questions:
 Possible architectures:
 Has to be highly modular to enable testing (docker?) - microservice?
 
-![[Drawing 2026-01-29 12.14.37.excalidraw]]
+![[Drawing 2026-01-29 12.14.37.excalidraw|700]]====
 
 
