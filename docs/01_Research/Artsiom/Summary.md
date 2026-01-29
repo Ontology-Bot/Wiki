@@ -43,6 +43,28 @@ Official tutorial from neo4j RAG
 
 
 - uses LLMs to generate SPARQL queries
+	- feeds TBox for this (terminology = vocabulary + constraints of the domain
+- Good results!
 - traceability of answers
+- Enhancing ODPs with **rdfs:comment** annotations is critical, as these provide additional context about the classes, object properties, and data properties
 - flow
 ![[Pasted image 20260129132608.png|350]]
+
+- assessment
+![[Pasted image 20260129150134.png|300]]
+
+![[Pasted image 20260129150617.png|250]]
+### Generative approach for SPARQL queries
+[[ieee_access_sgpt.pdf]]
+
+"Most approaches are template-based"
+Adopt BLEU and F1 score to measure accuracy 
+
+Do not really understand this paper
+
+![[Pasted image 20260129152201.png|400]]
+
+
+### KBot IEEE
+[[KBot_A_Knowledge_Graph_Based_ChatBot_for_Natural_Language_Understanding_Over_Linked_Data.pdf]]
+
