@@ -10,3 +10,10 @@ docs\03_Secrets\*
 .DS_Store
 Thumbs.db
 docs/.obsidian/appearance.json
+
+#Ignore neo4j files
+
+neo4j/data/
+neo4j/logs/
+neo4j/import/
+neo4j/plugins/
