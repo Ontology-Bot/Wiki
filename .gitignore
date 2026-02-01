@@ -13,7 +13,7 @@ docs/.obsidian/appearance.json
 
 #Ignore neo4j files
 
-neo4j/data/
-neo4j/logs/
-neo4j/import/
-neo4j/plugins/
+infrastructure/neo4j/data/
+infrastructure/neo4j/logs/
+infrastructure/neo4j/import/
+infrastructure/neo4j/plugins/

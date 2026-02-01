@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  neo4j:
+    image: neo4j:5
+    container_name: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/neo4j12345
+      # Auto-install plugins
+      - NEO4J_PLUGINS=["n10s","apoc"]
+      # Allow calling plugin procedures (important)
+      - NEO4J_dbms_security_procedures_unrestricted=n10s.*,apoc.*
+      - NEO4J_dbms_security_procedures_allowlist=n10s.*,apoc.*
+      # Allow file imports from /import
+      - NEO4J_dbms_security_allow__csv__import__from__file__urls=true
+    volumes:
+      - ./data:/data
+      - ./logs:/logs
+      - ./import:/import
+      - ./plugins:/plugins
