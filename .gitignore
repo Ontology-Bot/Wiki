@@ -9,4 +9,5 @@ docs\03_Secrets\*
 
 .DS_Store
 Thumbs.db
-docs/.obsidian/appearance.json
+docs/.obsidian/
+**.ttl
