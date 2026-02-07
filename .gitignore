@@ -11,11 +11,5 @@ docs/.obsidian/
 
 .DS_Store
 Thumbs.db
-docs/04_General/infrastructure/neo4j/data/
-docs/04_General/infrastructure/neo4j/logs/
-docs/04_General/infrastructure/neo4j/import/
-docs/04_General/infrastructure/neo4j/plugins/
-
-
-
-
+.github/copilot-instructions.md
+docs/.obsidian/
