@@ -2,6 +2,8 @@
 docs/.obsidian/workspace.json
 docs/.obsidian/app.json
 docs\03_Secrets\*
+docs/.obsidian/
+**.ttl
 
 # Ignore system and editor files
 .vscode/
@@ -9,4 +11,5 @@ docs\03_Secrets\*
 
 .DS_Store
 Thumbs.db
-docs/.obsidian/appearance.json
+.github/copilot-instructions.md
+docs/.obsidian/

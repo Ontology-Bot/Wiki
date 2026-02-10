@@ -73,6 +73,37 @@
               },
               "icon": "lucide-file-text",
               "title": "2025.emnlp-main.1674"
+              },
+              "icon": "lucide-file",
+              "title": "Setup GraphDB"
+            }
+          },
+          {
+            "id": "4c3a880aefa9231b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "docs/04_General/infrastructure/Setup GraphDB.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Setup GraphDB"
+            }
+          },
+          {
+            "id": "c0e5cd73c3965d4f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "docs/04_General/infrastructure/Setup OpenWebUI.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Setup OpenWebUI"
             }
           }
         ],
@@ -129,8 +160,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -150,7 +180,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/01_Research/Artsiom/RAG/Ontology & RAG Literature review.md",
+                "file": "docs/04_General/infrastructure/Setup OpenWebUI.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -160,7 +190,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Ontology & RAG Literature review"
+              "title": "Backlinks for Setup OpenWebUI"
             }
           },
           {
@@ -224,23 +254,15 @@
       "bases:Create new base": false
     }
   },
-  "active": "c0e5cd73c3965d4f",
+  "active": "f7a38e52ca35612a",
   "lastOpenFiles": [
-    "docs/02_Resources/Papers/artsiom_summary/2307.07697v6.pdf",
-    "docs/01_Research/Artsiom/RAG/Ontology & RAG Literature review.md",
-    "docs/02_Resources/Papers/artsiom_summary/2307.07697v6.pdf.crdownload",
-    "docs/02_Resources/Papers/artsiom_summary/ONTOLLM_2025_Aug20v11.pdf",
-    "docs/02_Resources/Papers/artsiom_summary/ONTOLLM_2025_Aug20v11.pdf.crdownload",
-    "docs/02_Resources/Papers/artsiom_summary/2025.emnlp-main.1674.pdf",
-    "docs/02_Resources/attachments/Pasted image 20260210210343.png",
-    "docs/02_Resources/Papers/artsiom_summary/2025.emnlp-main.1674.pdf.crdownload",
     "docs/04_General/infrastructure/Setup GraphDB.md",
-    "docs/01_Research/Artsiom/RAG",
-    "graphdb.license",
     "docs/04_General/infrastructure/Setup OpenWebUI.md",
     "docs/04_General/infrastructure",
     "docs/04_General",
     "docs/01_Research/Artsiom/Summary.md",
+    "test.txt",
+    "New Text Document.txt",
     "docs/01_Research/Artsiom/Architecture design.md",
     "Без названия.canvas",
     "docs/00_Admin/Meetings/15_01_2026.md"
