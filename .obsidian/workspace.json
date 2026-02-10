@@ -55,6 +55,49 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "docs/01_Research/Artsiom/RAG/Ontology & RAG Literature review.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ontology & RAG Literature review"
+            }
+          },
+          {
+            "id": "816fcbd4781ea01c",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "docs/02_Resources/Papers/artsiom_summary/2025.emnlp-main.1674.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "2025.emnlp-main.1674"
+              },
+              "icon": "lucide-file",
+              "title": "Setup GraphDB"
+            }
+          },
+          {
+            "id": "4c3a880aefa9231b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "docs/04_General/infrastructure/Setup GraphDB.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Setup GraphDB"
+            }
+          },
+          {
+            "id": "c0e5cd73c3965d4f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "docs/04_General/infrastructure/Setup OpenWebUI.md",
                 "mode": "source",
                 "source": false
@@ -104,7 +147,7 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "Поиск"
+              "title": "Search"
             }
           },
           {
@@ -222,7 +265,6 @@
     "New Text Document.txt",
     "docs/01_Research/Artsiom/Architecture design.md",
     "Без названия.canvas",
-    "docs/00_Admin/Meetings/15_01_2026.md",
-    "desktop.ini"
+    "docs/00_Admin/Meetings/15_01_2026.md"
   ]
 }

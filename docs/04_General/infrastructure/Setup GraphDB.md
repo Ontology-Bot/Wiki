@@ -4,7 +4,7 @@ It should auto-populate ontology from `./_secret`
 
 # Prepare:
 1. Get your .license here: `https://www.ontotext.com/products/graphdb/#:~:text=Request%20GraphDB%20License` (will sent file to email)
-2. Put into `./graphdb/work`
+2. Rename it to `graphdb.license` and put into `./graphdb/work`
 3. Put ontology files into `./_secret`
 
 # Launch:
