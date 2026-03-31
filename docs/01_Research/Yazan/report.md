@@ -2,255 +2,158 @@
 
 ## 1. Introduction
 
-Modern industrial systems generate large amounts of structured data, often represented using standards such as AutomationML and stored in knowledge graphs. While these graphs are powerful, accessing their information typically requires expertise in query languages such as SPARQL.
+Industrial plant data is often represented using ontologies such as AutomationML. These ontologies provide a structured and machine-readable representation of the system, including components, connections, and attributes.
 
-This creates a gap between domain experts (e.g., engineers) and the data itself.
+However, while the data is technically accessible, it is not easily usable for humans. Understanding the structure of a plant model requires navigating large graphs or inspecting raw data representations, which is time-consuming and unintuitive.
 
-The goal of this project is to explore how Large Language Models (LLMs) can be used to enable natural language access to ontology-based plant models.
+The goal of this project is to explore how Large Language Models (LLMs) can make ontology-based data more accessible by enabling natural language interaction.
 
 ---
 
 ## 2. Problem Statement
 
-The main challenges addressed in this work are:
+The core problem is not how to query the data, but how to make ontology-based information understandable and usable.
 
-- SPARQL queries are difficult to write and require technical knowledge
-- Direct LLM-to-SPARQL generation is unreliable and error-prone
-- Large ontologies can lead to slow query execution and timeouts
-- LLMs tend to hallucinate when not properly grounded
+Key challenges:
 
-We aim to design and evaluate different prototype architectures that:
+- Ontology data is complex and highly structured
+- Information is distributed across many entities and relationships
+- Raw representations (e.g., RDF triples) are difficult to interpret
+- Users need summaries and explanations, not raw data
 
-- Improve reliability
-- Reduce latency
-- Maintain correctness of answers
+We aim to bridge this gap by transforming ontology data into a format that can be easily consumed by both humans and LLMs.
 
 ---
 
 ## 3. State of the Art
 
-Recent research explores combining LLMs with knowledge graphs using different approaches.
+Recent work explores combining LLMs with structured knowledge sources.
+
+### LLM + Knowledge Graph Interaction
+
+Research shows that directly applying LLMs to knowledge graphs is challenging. Graph data is not naturally aligned with how LLMs process text.
+
+From the paper:
+https://arxiv.org/pdf/2306.08302
+
+Key observations:
+
+- LLMs struggle with raw graph structures
+- Generated queries are often unreliable
+- Structured intermediate representations improve results
 
 ---
 
-### 3.1 Direct SPARQL Generation
+### Retrieval-Based Approaches
 
-LLMs translate natural language directly into SPARQL queries.
+Another common approach is to retrieve relevant information and provide it as context to the LLM.
 
-📄 Example paper:
-- https://arxiv.org/pdf/2306.08302
+However:
 
-**Advantages:**
-- Flexible
-- No preprocessing required
-
-**Limitations (from paper + experiments):**
-- High error rate in query generation
-- Requires validation and retry mechanisms
-- Sensitive to ontology schema complexity
-- Often produces syntactically correct but semantically wrong queries
-
-👉 **Our finding:**  
-We observed timeouts and unstable behavior when queries became complex (e.g., station-related queries).
+- Raw graph data is not well suited for retrieval
+- Unstructured context leads to weak answers
 
 ---
 
-### 3.2 Retrieval-Augmented Generation (RAG)
+### Key Insight from Literature
 
-Relevant knowledge is retrieved and passed as context to the LLM.
-
-📄 Example paper:
-- https://arxiv.org/abs/2005.11401
-
-**Advantages:**
-- Reduces hallucination
-- Easier to implement
-
-**Limitations:**
-- Retrieval over raw RDF triples is inefficient
-- Context quality heavily affects answer quality
-
-👉 **Paper insight:**  
-LLMs struggle when context is unstructured or too noisy.
+> LLMs perform better when knowledge is presented in structured, human-readable formats rather than raw graph data.
 
 ---
 
-### 3.3 Hybrid Approaches (Key Paper Insight)
+## 4. Prototype: Query Caching as Structured Knowledge Layer
 
-From:  
-📄 https://arxiv.org/pdf/2306.08302
+### 4.1 Idea
 
-The paper proposes:
+Instead of interacting with the ontology directly at runtime, we transform it into a structured and reusable representation.
 
-- Generating multiple query candidates
-- Using validation steps before execution
-- Combining symbolic querying with LLM reasoning
+We call this **Query Caching**, where:
 
-**Key insight:**
-
-> Pure LLM-based querying is unstable — hybrid systems are more reliable.
-
-👉 **Important takeaway for our work:**  
-Instead of letting the LLM generate SPARQL at runtime, we move part of the logic **offline**.
+- Important queries are executed once
+- Results are stored as markdown pages
+- These pages act as a persistent knowledge layer
 
 ---
 
-## 4. Prototype: Query Caching (Wiki Generation Layer)
+### 4.2 Architecture
 
-### 4.1 Motivation
-
-From both literature and experiments:
-
-- SPARQL queries can be slow and expensive
-- LLM-generated queries are unreliable
-- Many user questions are repetitive
-
-We introduce **Query Caching as a structured knowledge layer**.
+GraphDB → SPARQL Queries → Markdown Wiki → OpenWebUI → LLM
 
 ---
 
-### 4.2 Core Idea
+### 4.3 What We Implemented
 
-Instead of querying GraphDB at runtime:
+- Automatic generation of overview pages (stations, components)
+- Dynamic generation of:
+  - station-specific pages
+  - component-type pages
+- Validation pages (e.g., open ends in the plant)
 
-> We precompute frequently useful queries and store their results as structured markdown pages.
-
-This acts as a **cached knowledge representation**.
-
----
-
-### 4.3 Architecture
-
-GraphDB → SPARQL Queries → Cached Markdown Wiki → OpenWebUI → LLM
+The result is a structured "plant wiki" that represents the ontology in a human-readable format.
 
 ---
 
-### 4.4 What “Query Caching” Means Here
+### 4.4 Why This Works
 
-In our prototype, caching is not just storing results temporarily.
+This approach changes how the ontology is consumed:
 
-It is:
-
-- Precomputing important queries
-- Persisting results as markdown
-- Reusing them across all user queries
-
-👉 This turns expensive SPARQL queries into **fast retrieval operations**.
+- Instead of navigating a graph → users read structured pages
+- Instead of raw triples → LLM sees tables and summaries
+- Instead of runtime complexity → data is precomputed
 
 ---
 
-### 4.5 Key Features
+## 5. Findings
 
-- Dynamic page generation (stations, components)
-- Separation of:
-    - discovery queries (what exists)
-    - template queries (how to describe it)
-- Validation pages (e.g., open ends detection)
-- Structured tabular outputs for LLM consumption
+### 5.1 Ontology Representation Matters
 
----
+We observed that:
 
-## 5. Assumptions and Design Decisions
-
-### 5.1 Assumptions
-
-We assumed that:
-
-- Users ask similar questions repeatedly
-- Ontology structure changes infrequently
-- Structured representations improve LLM performance
-- Full LLM → SPARQL automation is not reliable
+- Raw ontology data is difficult to use directly
+- Converting it into structured documents makes it significantly easier to interpret
 
 ---
 
-### 5.2 Why Query Caching Was Selected
+### 5.2 LLM Performance Improves with Structure
 
-Based on literature and experiments:
-
-- Reduces dependency on runtime SPARQL execution
-- Avoids instability of LLM-generated queries
-- Improves latency significantly
-- Provides structured and interpretable knowledge
-
-👉 Compared to alternatives:
-
-| Approach | Issue |
-|--------|------|
-| Direct SPARQL | Unstable |
-| Raw RAG | Weak structure |
-| Query Caching | Balanced and reliable |
+- LLM answers were more accurate when using markdown tables
+- Clear page organization improved retrieval quality
+- Hallucination was reduced when context was structured
 
 ---
 
-## 6. Findings
+### 5.3 Preprocessing is Valuable
 
-### 6.1 Reliability
+Although query caching requires preprocessing:
 
-From paper + experiments:
-
-- Direct SPARQL generation is unstable
-- Precomputed structured knowledge significantly improves answer correctness
+- It reduces complexity during interaction
+- It enables faster and more stable responses
 
 ---
 
-### 6.2 Performance
+## 6. Limitations
 
-- Complex SPARQL queries caused timeouts
-- Query caching eliminates repeated execution
-- System becomes significantly faster
-
----
-
-### 6.3 LLM Behavior
-
-We observed:
-
-- LLM performs better with:
-    - structured tables
-    - clearly named pages
-- LLM struggles with:
-    - raw RDF triples
-    - unstructured graph data
-
-👉 Matches findings from RAG literature.
+- The system depends on predefined queries
+- It does not fully capture all relationships in the ontology
+- Updates to the ontology require regeneration of the wiki
 
 ---
 
-### 6.4 Trade-offs
+## 7. Future Work
 
-| Approach          | Strength            | Weakness               |
-|------------------|--------------------|------------------------|
-| SPARQL Generation | Flexible           | Unreliable             |
-| RAG (raw)         | Simple             | Weak context           |
-| Query Caching     | Fast & structured  | Requires preprocessing |
-
----
-
-## 7. Limitations
-
-- Requires preprocessing time to generate wiki
-- Cache invalidation not handled dynamically
-- Queries still manually designed
-- Limited reasoning over graph structure
+- Automatically generate queries from ontology structure
+- Improve coverage of relationships between entities
+- Combine cached knowledge with live querying
+- Integrate with other approaches (e.g., direct graph reasoning)
 
 ---
 
-## 8. Future Work
+## 8. Conclusion
 
-- Automatic query generation from ontology schema
-- Smarter caching (semantic similarity instead of exact queries)
-- Hybrid system:
-    - cached knowledge + live SPARQL fallback
-- Integration with other prototypes
+This project shows that the main challenge is not accessing ontology data, but making it usable.
 
----
+By transforming the ontology into a structured knowledge layer, we enable both humans and LLMs to interact with complex plant data more effectively.
 
-## 9. Conclusion
-
-This work shows that combining LLMs with structured, cached representations of ontology data significantly improves both reliability and performance.
-
-Instead of relying on direct SPARQL generation, we introduce a query caching layer that transforms knowledge graphs into reusable structured documents.
-
-This results in a more robust and scalable approach to ontology-based question answering.
+Query caching, in this context, is not just a performance optimization, but a way to reshape how ontology data is consumed.
 
 ---
